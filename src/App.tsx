@@ -21,7 +21,7 @@ function App() {
   const [typeMap, setTypeMap] = useState(types as unknown as TypeCounterMap)
   const [questionCount, setQuestionCount] = useState(0)
 
-  const [typeForQuestion, setTypeForQuestion] = useState<keyof typeof typeMap | string>('')
+  const [typeForQuestion, setTypeForQuestion] = useState<keyof typeof typeMap & string>('')
   const [questionType, setQuestionType] = useState<QuestionType>('weakness')
   const [typeKeys, setTypeKeys] = useState(Object.keys(typeMap))
 
