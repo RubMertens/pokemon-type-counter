@@ -37,7 +37,7 @@ html,
   display: grid;
   height: calc(100vh - 16px);
   grid-template-columns: 1fr;
-  grid-template-rows: 0.2fr 1.8fr 0.5fr;
+  grid-template-rows: 0fr 1.8fr 0.5fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
 
@@ -250,10 +250,53 @@ button:hover {
 
 button.answer-button {
   line-height: 25px;
+  margin: 10px;
+}
+
+:root {
+  --wrong: #cd443a;
+  --correct: #3bd04a;
+  --missed: #3941d2;
+}
+
+@keyframes wrong-answer {
+  0% {
+    box-shadow: 0px 0px 8px 2px var(--wrong);
+  }
+  50% {
+    box-shadow: 0px 0px 8px 6px var(--wrong);
+  }
+  100% {
+    box-shadow: 0px 0px 8px 2px var(--wrong);
+  }
+}
+@keyframes missed-answer {
+  0% {
+    box-shadow: 0px 0px 8px 2px var(--missed);
+  }
+  50% {
+    box-shadow: 0px 0px 8px 6px var(--missed);
+  }
+  100% {
+    box-shadow: 0px 0px 8px 2px var(--missed);
+  }
 }
 button.answer-button.selected {
   box-shadow: 0px 0px 8px 2px #3f65e0;
 }
+button.answer-button.correct {
+  animation: missed-answer 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite both;
+}
+
+button.answer-button.selected.wrong {
+  animation: wrong-answer 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite both;
+}
+button.answer-button.selected.correct {
+  /* background-color: var(--correct); */
+  animation: none;
+  box-shadow: inset 0px 0px 10px 6px var(--correct);
+}
+
 button.answer-button::before {
   content: '';
   display: block;
