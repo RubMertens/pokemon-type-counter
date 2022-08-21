@@ -51,10 +51,10 @@ html,
   background: linear-gradient(318deg, rgba(59, 241, 129, 1) 10%, rgba(255, 255, 255, 1) 100%);
 }
 .buttons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-content: flex-start;
+  display: grid;
+  grid-auto-rows: 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0px 0px;
 }
 
 .fade-rule {
