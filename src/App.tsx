@@ -54,6 +54,7 @@ function App() {
   const [selectedButtons, setSelectedButtons] = useState<string[]>([])
 
   const handleButtonClick = (key: string) => {
+    if (questionState !== 'busy') return
     if (selectedButtons.includes(key)) {
       console.log(selectedButtons, selectedButtons.indexOf(key))
       selectedButtons.splice(selectedButtons.indexOf(key), 1)
