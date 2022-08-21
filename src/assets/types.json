@@ -1,0 +1,32 @@
+{
+  "Bug": { "strongAgainst": ["Grass", "Dark", "Psychic"], "weakAgainst": ["Fire", "Flying", "Rock"] },
+  "Dark": { "strongAgainst": ["Ghost", "Psychic"], "weakAgainst": ["Bug", "Fairy", "Fighting"] },
+  "Dragon": { "strongAgainst": ["Dragon"], "weakAgainst": ["Dragon", "Fairy", "Ice"] },
+  "Electric": { "strongAgainst": ["Flying", "Water"], "weakAgainst": ["Ground"] },
+  "Fairy": { "strongAgainst": ["Fighting", "Dark", "Dragon"], "weakAgainst": ["Poison", "Steel"] },
+  "Fighting": {
+    "strongAgainst": ["Dark", "Ice", "Normal", "Rock", "Steel"],
+    "weakAgainst": ["Fairy", "Flying", "Psychic"]
+  },
+  "Fire": { "strongAgainst": ["Bug", "Grass", "Ice", "Steel"], "weakAgainst": ["Ground", "Rock", "Water"] },
+  "Flying": { "strongAgainst": ["Bug", "Fighting", "Grass"], "weakAgainst": ["Electric", "Ice", "Rock"] },
+  "Ghost": { "strongAgainst": ["Ghost", "Psychic"], "weakAgainst": ["Dark", "Ghost"] },
+  "Grass": { "strongAgainst": ["Ground", "Rock", "Water"], "weakAgainst": ["Bug", "Fire", "Flying", "Ice", "Poison"] },
+  "Ground": {
+    "strongAgainst": ["Electric", "Fire", "Poison", "Rock", "Steel"],
+    "weakAgainst": ["Grass", "Ice", "Water"]
+  },
+  "Ice": {
+    "strongAgainst": ["Dragon", "Flying", "Grass", "Ground"],
+    "weakAgainst": ["Fighting", "Fire", "Rock", "Steel"]
+  },
+  "Normal": { "strongAgainst": [], "weakAgainst": ["Fighting"] },
+  "Poison": { "strongAgainst": ["Fairy", "Grass"], "weakAgainst": ["Ground", "Psychic"] },
+  "Psychic": { "strongAgainst": ["Fighting", "Poison"], "weakAgainst": ["Bug", "Dark", "Ghost"] },
+  "Rock": {
+    "strongAgainst": ["Bug", "Fire", "Flying", "Ice"],
+    "weakAgainst": ["Fighting", "Grass", "Ground", "Steel", "Water"]
+  },
+  "Steel": { "strongAgainst": ["Fairy", "Ice", "Rock"], "weakAgainst": ["Fighting", "Fire", "Ground"] },
+  "Water": { "strongAgainst": ["Fire", "Ground", "Rock"], "weakAgainst": ["Electric", "Grass"] }
+}

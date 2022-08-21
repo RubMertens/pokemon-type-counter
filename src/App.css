@@ -1,0 +1,375 @@
+:root {
+  --Bug: #99c631;
+  --Dark: #4a4858;
+  --Dragon: #0763ad;
+  --Electric: #f5d13e;
+  --Fairy: #ef8dde;
+  --Fighting: #e24653;
+  --Fire: #ff9c52;
+  --Flying: #88adde;
+  --Ghost: #526bae;
+  --Grass: #63bd52;
+  --Ground: #d87846;
+  --Ice: #71cec2;
+  --Normal: #9399a5;
+  --Poison: #a567c7;
+  --Psychic: #f86e76;
+  --Rock: #c6bd8c;
+  --Steel: #5a90a9;
+  --Water: #5395de;
+
+  --icon-height: 25px;
+  --icon-width: 25px;
+}
+
+body,
+html,
+#root {
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+}
+
+.App {
+  font-family: 'Lato', sans-serif;
+  margin: 0;
+  padding: 8px;
+  display: grid;
+  height: calc(100vh - 16px);
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.2fr 1.8fr 0.5fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+
+  background: rgb(59, 241, 129);
+  background: linear-gradient(318deg, rgba(59, 241, 129, 1) 10%, rgba(255, 255, 255, 1) 100%);
+}
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+}
+
+.fade-rule {
+  display: block;
+  border: none;
+  height: 1px;
+  background: black;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(0, 0, 0, 1) 30%,
+    rgba(0, 0, 0, 1) 70%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+footer .fade-rule {
+  margin-bottom: 8px;
+}
+footer .submit {
+  width: calc(100% - 8px);
+  padding: 24px 48px;
+  margin: 4px;
+}
+button.submit {
+  --color: #1b2447;
+  background-color: white;
+  border: 1px solid var(--color);
+  color: var(--color);
+  box-shadow: 0 0 0 5px rgba(130, 130, 130, 0.1);
+}
+
+header h1 {
+  font-size: 1.8em;
+}
+
+/*
+    FEEDBACK
+*/
+
+.feedback span.type {
+  margin-right: 8px;
+}
+
+/*
+    QUESTIONS
+*/
+
+.type-container {
+  display: flex;
+  justify-content: center;
+}
+
+span.type {
+  display: inline-block;
+  line-height: 25px;
+  border-radius: 100px;
+  border: gray 1px solid;
+  padding: 10px 14px;
+
+  flex-grow: 1;
+  text-align: center;
+}
+
+span.type::before {
+  content: '';
+  display: block;
+
+  width: var(--icon-width);
+  height: var(--icon-height);
+  margin: 0 8px 0 0;
+  float: left;
+}
+
+span.type.Bug {
+  background-color: var(--Bug);
+}
+span.type.Dark {
+  background-color: var(--Dark);
+}
+span.type.Dragon {
+  background-color: var(--Dragon);
+}
+span.type.Electric {
+  background-color: var(--Electric);
+}
+span.type.Fairy {
+  background-color: var(--Fairy);
+}
+span.type.Fighting {
+  background-color: var(--Fighting);
+}
+span.type.Fire {
+  background-color: var(--Fire);
+}
+span.type.Flying {
+  background-color: var(--Flying);
+}
+span.type.Ghost {
+  background-color: var(--Ghost);
+}
+span.type.Grass {
+  background-color: var(--Grass);
+}
+span.type.Ground {
+  background-color: var(--Ground);
+}
+span.type.Ice {
+  background-color: var(--Ice);
+}
+span.type.Normal {
+  background-color: var(--Normal);
+}
+span.type.Poison {
+  background-color: var(--Poison);
+}
+span.type.Psychic {
+  background-color: var(--Psychic);
+}
+span.type.Rock {
+  background-color: var(--Rock);
+}
+span.type.Steel {
+  background-color: var(--Steel);
+}
+span.type.Water {
+  background-color: var(--Water);
+}
+
+span.type.Bug::before {
+  background: url('./assets/Icon_Bug.webp');
+}
+span.type.Dark::before {
+  background: url('./assets/Icon_Dark.webp');
+}
+span.type.Dragon::before {
+  background: url('./assets/Icon_Dragon.webp');
+}
+span.type.Electric::before {
+  background: url('./assets/Icon_Electric.webp');
+}
+span.type.Fairy::before {
+  background: url('./assets/Icon_Fairy.webp');
+}
+span.type.Fighting::before {
+  background: url('./assets/Icon_Fighting.webp');
+}
+span.type.Fire::before {
+  background: url('./assets/Icon_Fire.webp');
+}
+span.type.Flying::before {
+  background: url('./assets/Icon_Flying.webp');
+}
+span.type.Ghost::before {
+  background: url('./assets/Icon_Ghost.webp');
+}
+span.type.Grass::before {
+  background: url('./assets/Icon_Grass.webp');
+}
+span.type.Ground::before {
+  background: url('./assets/Icon_Ground.webp');
+}
+span.type.Ice::before {
+  background: url('./assets/Icon_Ice.webp');
+}
+span.type.Normal::before {
+  background: url('./assets/Icon_Normal.webp');
+}
+span.type.Poison::before {
+  background: url('./assets/Icon_Poison.webp');
+}
+span.type.Psychic::before {
+  background: url('./assets/Icon_Psychic.webp');
+}
+span.type.Rock::before {
+  background: url('./assets/Icon_Rock.webp');
+}
+span.type.Steel::before {
+  background: url('./assets/Icon_Steel.webp');
+}
+span.type.Water::before {
+  background: url('./assets/Icon_Water.webp');
+}
+
+/*
+    ANSWERBUTTONS
+*/
+button {
+  padding: 10px 14px;
+  border-radius: 100px;
+  border: 1px grey solid;
+  margin: 4px;
+  transition: all 50ms linear;
+  text-align: center;
+}
+button:hover {
+  filter: brightness(0.8);
+}
+
+button.answer-button {
+  line-height: 25px;
+}
+button.answer-button.selected {
+  box-shadow: 0px 0px 8px 2px #3f65e0;
+}
+button.answer-button::before {
+  content: '';
+  display: block;
+
+  width: var(--icon-width);
+  height: var(--icon-height);
+  margin: 0 8px 0 0;
+  float: left;
+}
+
+button.answer-button.Bug {
+  background-color: var(--Bug);
+}
+button.answer-button.Dark {
+  background-color: var(--Dark);
+}
+button.answer-button.Dragon {
+  background-color: var(--Dragon);
+}
+button.answer-button.Electric {
+  background-color: var(--Electric);
+}
+button.answer-button.Fairy {
+  background-color: var(--Fairy);
+}
+button.answer-button.Fighting {
+  background-color: var(--Fighting);
+}
+button.answer-button.Fire {
+  background-color: var(--Fire);
+}
+button.answer-button.Flying {
+  background-color: var(--Flying);
+}
+button.answer-button.Ghost {
+  background-color: var(--Ghost);
+}
+button.answer-button.Grass {
+  background-color: var(--Grass);
+}
+button.answer-button.Ground {
+  background-color: var(--Ground);
+}
+button.answer-button.Ice {
+  background-color: var(--Ice);
+}
+button.answer-button.Normal {
+  background-color: var(--Normal);
+}
+button.answer-button.Poison {
+  background-color: var(--Poison);
+}
+button.answer-button.Psychic {
+  background-color: var(--Psychic);
+}
+button.answer-button.Rock {
+  background-color: var(--Rock);
+}
+button.answer-button.Steel {
+  background-color: var(--Steel);
+}
+button.answer-button.Water {
+  background-color: var(--Water);
+}
+
+button.answer-button.Bug:before {
+  background: url('./assets/Icon_Bug.webp');
+}
+button.answer-button.Dark:before {
+  background: url('./assets/Icon_Dark.webp');
+}
+button.answer-button.Dragon:before {
+  background: url('./assets/Icon_Dragon.webp');
+}
+button.answer-button.Electric:before {
+  background: url('./assets/Icon_Electric.webp');
+}
+button.answer-button.Fairy:before {
+  background: url('./assets/Icon_Fairy.webp');
+}
+button.answer-button.Fighting:before {
+  background: url('./assets/Icon_Fighting.webp');
+}
+button.answer-button.Fire:before {
+  background: url('./assets/Icon_Fire.webp');
+}
+button.answer-button.Flying:before {
+  background: url('./assets/Icon_Flying.webp');
+}
+button.answer-button.Ghost:before {
+  background: url('./assets/Icon_Ghost.webp');
+}
+button.answer-button.Grass:before {
+  background: url('./assets/Icon_Grass.webp');
+}
+button.answer-button.Ground:before {
+  background: url('./assets/Icon_Ground.webp');
+}
+button.answer-button.Ice:before {
+  background: url('./assets/Icon_Ice.webp');
+}
+button.answer-button.Normal:before {
+  background: url('./assets/Icon_Normal.webp');
+}
+button.answer-button.Poison:before {
+  background: url('./assets/Icon_Poison.webp');
+}
+button.answer-button.Psychic:before {
+  background: url('./assets/Icon_Psychic.webp');
+}
+button.answer-button.Rock:before {
+  background: url('./assets/Icon_Rock.webp');
+}
+button.answer-button.Steel:before {
+  background: url('./assets/Icon_Steel.webp');
+}
+button.answer-button.Water:before {
+  background: url('./assets/Icon_Water.webp');
+}
