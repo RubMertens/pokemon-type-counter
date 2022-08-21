@@ -30,6 +30,12 @@ html,
   height: 100vh;
 }
 
+.App main {
+  overflow: scroll;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
 .App {
   font-family: 'Lato', sans-serif;
   margin: 0;
@@ -70,15 +76,13 @@ footer .fade-rule {
 }
 footer .submit {
   width: calc(100% - 8px);
-  padding: 24px 48px;
-  margin: 4px;
 }
 button.submit {
   --color: #1b2447;
   background-color: white;
   border: 1px solid var(--color);
   color: var(--color);
-  box-shadow: 0 0 0 5px rgba(130, 130, 130, 0.1);
+  padding: 16px;
 }
 
 header h1 {
@@ -91,6 +95,7 @@ header h1 {
 
 .feedback span.type {
   margin-right: 8px;
+  margin-bottom: 4px;
 }
 
 /*
@@ -250,7 +255,6 @@ button:hover {
 
 button.answer-button {
   line-height: 25px;
-  margin: 10px;
 }
 
 :root {

@@ -134,7 +134,6 @@ function App() {
           ) : (
             ''
           )}
-          {questionState !== 'busy' ? <button onClick={handleNextQuestion}>Next question</button> : ''}
         </section>
       </main>
       <footer>
@@ -151,9 +150,16 @@ function App() {
             </button>
           ))}
         </div>
-        <button onClick={() => handleAnswerButtonClick()} className="submit">
-          Answer
-        </button>
+        {questionState === 'busy' && (
+          <button onClick={() => handleAnswerButtonClick()} className="submit">
+            Answer
+          </button>
+        )}
+        {questionState !== 'busy' && (
+          <button className="submit" onClick={handleNextQuestion}>
+            Next Question!
+          </button>
+        )}
       </footer>
     </div>
   )
