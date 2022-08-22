@@ -245,7 +245,7 @@ button {
   padding: 10px 14px;
   border-radius: 100px;
   border: 1px grey solid;
-  margin: 4px;
+  margin: 6px;
   transition: all 50ms linear;
   text-align: center;
 }
@@ -267,38 +267,78 @@ button.answer-button {
   0% {
     box-shadow: 0px 0px 8px 2px var(--wrong);
   }
-  50% {
+  70% {
     box-shadow: 0px 0px 8px 6px var(--wrong);
   }
   100% {
-    box-shadow: 0px 0px 8px 2px var(--wrong);
+    box-shadow: 0px 0px 8px 4px var(--wrong);
   }
 }
 @keyframes missed-answer {
   0% {
     box-shadow: 0px 0px 8px 2px var(--missed);
   }
-  50% {
+  70% {
     box-shadow: 0px 0px 8px 6px var(--missed);
   }
   100% {
-    box-shadow: 0px 0px 8px 2px var(--missed);
+    box-shadow: 0px 0px 8px 4px var(--missed);
   }
 }
+
+@keyframes correct-answer {
+  0% {
+    box-shadow: 0px 0px 8px 2px var(--correct);
+  }
+  70% {
+    box-shadow: 0px 0px 8px 6px var(--correct);
+  }
+  100% {
+    box-shadow: 0px 0px 8px 4px var(--correct);
+  }
+}
+
+@keyframes wrong-answer-icon {
+  0% {
+    transform: rotate3d(0);
+  }
+  100% {
+    transform: rotate3d(0, 1, 0, 180deg);
+    background: url('./assets/wrong.svg');
+  }
+}
+
+@keyframes correct-answer-icon {
+  0% {
+    transform: rotate3d(0);
+  }
+  100% {
+    transform: rotate3d(0, 1, 0, 180deg);
+    content: '✔';
+    background: url('./assets/correct.svg');
+  }
+}
+
 button.answer-button.selected {
   box-shadow: 0px 0px 8px 2px #3f65e0;
 }
 button.answer-button.correct {
-  animation: missed-answer 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite both;
+  animation: missed-answer 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) normal both;
 }
 
 button.answer-button.selected.wrong {
-  animation: wrong-answer 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite both;
+  animation: wrong-answer 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) normal both;
+}
+button.answer-button.selected.wrong::before {
+  transform-style: preserve-3d;
+  animation: wrong-answer-icon 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) normal both;
 }
 button.answer-button.selected.correct {
-  /* background-color: var(--correct); */
-  animation: none;
-  box-shadow: inset 0px 0px 10px 6px var(--correct);
+  animation: correct-answer 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) normal both;
+  box-shadow: 0px 0px 10px 6px var(--correct);
+}
+button.answer-button.selected.correct::before {
+  animation: correct-answer-icon 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) normal both;
 }
 
 button.answer-button::before {

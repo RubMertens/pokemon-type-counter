@@ -6,6 +6,7 @@ import types from './assets/types.json'
 import { Question, QuestionType } from './components/Question'
 import _ from 'underscore'
 import { Type } from './components/Type'
+import { SelectedAnswers } from './components/SelectedAnswers'
 
 type TypeCounter = {
   weakAgainst: string[]
@@ -17,7 +18,6 @@ type TypeCounterMap = {
 type QuestionStates = 'busy' | 'correct' | 'wrong'
 
 function App() {
-  console.log(types)
   const [typeMap, setTypeMap] = useState(types as unknown as TypeCounterMap)
   const [questionCount, setQuestionCount] = useState(0)
 
@@ -35,38 +35,41 @@ function App() {
   useEffect(() => {
     setTypeForQuestion(typeKeys[randomInteger(0, typeKeys.length)])
     setQuestionType(randomInteger(0, 1) === 0 ? 'weakness' : 'strength')
-    setSelectedButtons([])
+    setSelectedAnswers([])
     setQuestionState('busy')
-
-    console.log(typeKeys)
   }, [questionCount, typeKeys])
 
   useEffect(() => {
     if (!typeMap || !typeForQuestion) return
-    console.log('effect setting correct answsers')
     if (questionType === 'weakness') {
-      setCorrectAnswers(typeMap[typeForQuestion].weakAgainst)
     } else {
       setCorrectAnswers(typeMap[typeForQuestion].strongAgainst)
     }
   }, [typeForQuestion, questionType, typeMap])
 
-  const [selectedButtons, setSelectedButtons] = useState<string[]>([])
+  const [selectedAnswers, setSelectedAnswers] = useState<string[]>([])
+  let unSelectedAnswers = _.difference(typeKeys, selectedAnswers)
+  if (questionState !== 'busy') {
+    unSelectedAnswers = _.difference(unSelectedAnswers, missedAnswers)
+  }
 
-  const handleButtonClick = (key: string) => {
+  const selectAnswer = (key: string) => {
     if (questionState !== 'busy') return
-    if (selectedButtons.includes(key)) {
-      console.log(selectedButtons, selectedButtons.indexOf(key))
-      selectedButtons.splice(selectedButtons.indexOf(key), 1)
-      console.log(selectedButtons)
-      setSelectedButtons([...selectedButtons])
-    } else {
-      setSelectedButtons((prev) => [...prev, key])
+    if (!selectedAnswers.includes(key)) {
+      setSelectedAnswers((prev) => [...prev, key])
+    }
+  }
+
+  const deselectAnswer = (key: string) => {
+    if (questionState !== 'busy') return
+    if (selectedAnswers.includes(key)) {
+      selectedAnswers.splice(selectedAnswers.indexOf(key), 1)
+      setSelectedAnswers([...selectedAnswers])
     }
   }
 
   const isButtonSelected = (key: string) => {
-    return selectedButtons.includes(key)
+    return selectedAnswers.includes(key)
   }
   const isButtonCorrectAnswer = (key: string) => {
     return correctAnswers.includes(key)
@@ -84,19 +87,19 @@ function App() {
   }
 
   const handleAnswerButtonClick = () => {
-    correctAnswers.sort()
-    selectedButtons.sort()
-    if (_.isEqual(selectedButtons, correctAnswers)) {
+    const localCorrect = [...correctAnswers].sort()
+    const localSelected = [...selectedAnswers].sort()
+    if (_.isEqual(localSelected, localCorrect)) {
       //answered correctly!
       setQuestionState('correct')
     } else {
       setQuestionState('wrong')
 
       //calculate missed answers
-      setMissedAnswers(_.difference(correctAnswers, selectedButtons))
+      setMissedAnswers(_.difference(correctAnswers, selectedAnswers))
 
       //calculate wrongly selected answers
-      setWronglySelectedAnswers(_.difference(selectedButtons, correctAnswers))
+      setWronglySelectedAnswers(_.difference(selectedAnswers, correctAnswers))
     }
   }
 
@@ -106,48 +109,36 @@ function App() {
 
   return (
     <div className="App">
-      <header></header>
+      <header>{correctAnswers.join(',')}</header>
       <main>
         <section>
           {/* {correctAnswers?.join(',')} */}
           <Question type={typeForQuestion} questionType={questionType} />
-          {questionState === 'correct' ? <div>You answered correctly!</div> : ''}
-          {questionState === 'wrong' ? (
-            <div>
-              <h3>Sadly your answer is wrong</h3>
-              {missedAnswers.length > 0 && (
-                <p className="feedback">
-                  You missed{' '}
-                  {missedAnswers.map((a) => (
-                    <Type type={a} />
-                  ))}
-                </p>
-              )}
-              {wronglySelectedAnswers.length > 0 && (
-                <p className="feedback">
-                  You wrongly chose:{' '}
-                  {wronglySelectedAnswers.map((a) => (
-                    <Type type={a} />
-                  ))}
-                </p>
-              )}
-            </div>
-          ) : (
-            ''
-          )}
+
+          {selectedAnswers.map((a) => (
+            <button key={a} className={'answer-button ' + classNameForButton(a)} onClick={() => deselectAnswer(a)}>
+              {a}
+            </button>
+          ))}
+          {questionState !== 'busy' &&
+            missedAnswers.map((a) => (
+              <button key={a} className={'answer-button ' + classNameForButton(a)}>
+                {a}
+              </button>
+            ))}
         </section>
       </main>
       <footer>
         <span className="fade-rule"></span>
         <div className="buttons">
-          {typeKeys.map((tk) => (
+          {unSelectedAnswers.map((a) => (
             <button
-              key={tk}
-              value={tk}
-              onClick={() => handleButtonClick(tk)}
-              className={'answer-button ' + classNameForButton(tk)}
+              key={a}
+              value={a}
+              onClick={() => selectAnswer(a)}
+              className={'answer-button ' + classNameForButton(a)}
             >
-              {tk}
+              {a}
             </button>
           ))}
         </div>
