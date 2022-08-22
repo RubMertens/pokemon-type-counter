@@ -109,7 +109,7 @@ function App() {
 
   return (
     <div className="App">
-      <header>{correctAnswers.join(',')}</header>
+      <header></header>
       <main>
         <section>
           {/* {correctAnswers?.join(',')} */}
