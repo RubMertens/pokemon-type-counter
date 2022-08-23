@@ -92,6 +92,8 @@ function App() {
     if (_.isEqual(localSelected, localCorrect)) {
       //answered correctly!
       setQuestionState('correct')
+      setMissedAnswers([])
+      setWronglySelectedAnswers([])
     } else {
       setQuestionState('wrong')
 
@@ -109,10 +111,13 @@ function App() {
 
   return (
     <div className="App">
-      <header></header>
+      <header>
+        <p>correct: {correctAnswers.join(',')}</p>
+        <p>wrong: {wronglySelectedAnswers.join(',')}</p>
+        <p>missed: {missedAnswers.join(',')}</p>
+      </header>
       <main>
         <section>
-          {/* {correctAnswers?.join(',')} */}
           <Question type={typeForQuestion} questionType={questionType} />
 
           {selectedAnswers.map((a) => (
