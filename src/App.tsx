@@ -32,6 +32,15 @@ function App() {
 
   const [correctAnswers, setCorrectAnswers] = useState<string[]>([])
 
+  const [isCheating, setIsCheating] = useState(false)
+
+  useEffect(() => {
+    ;(window as any).cheat = () => setIsCheating(true)
+    return () => {
+      ;(window as any).cheat = undefined
+    }
+  })
+
   const clearAnswers = () => {
     setCorrectAnswers([])
     setWronglySelectedAnswers([])
@@ -118,9 +127,13 @@ function App() {
   return (
     <div className="App">
       <header>
-        <p>correct: {correctAnswers.join(',')}</p>
-        <p>wrong: {wronglySelectedAnswers.join(',')}</p>
-        <p>missed: {missedAnswers.join(',')}</p>
+        {isCheating && (
+          <>
+            <p>correct: {correctAnswers.join(',')}</p>
+            <p>wrong: {wronglySelectedAnswers.join(',')}</p>
+            <p>missed: {missedAnswers.join(',')}</p>
+          </>
+        )}
       </header>
       <main>
         <section>
