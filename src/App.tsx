@@ -32,6 +32,12 @@ function App() {
 
   const [correctAnswers, setCorrectAnswers] = useState<string[]>([])
 
+  const clearAnswers = () => {
+    setCorrectAnswers([])
+    setWronglySelectedAnswers([])
+    setMissedAnswers([])
+  }
+
   useEffect(() => {
     setTypeForQuestion(typeKeys[randomInteger(0, typeKeys.length)])
     setQuestionType(randomInteger(0, 1) === 0 ? 'weakness' : 'strength')
@@ -42,6 +48,7 @@ function App() {
   useEffect(() => {
     if (!typeMap || !typeForQuestion) return
     if (questionType === 'weakness') {
+      setCorrectAnswers(typeMap[typeForQuestion].weakAgainst)
     } else {
       setCorrectAnswers(typeMap[typeForQuestion].strongAgainst)
     }
@@ -92,8 +99,6 @@ function App() {
     if (_.isEqual(localSelected, localCorrect)) {
       //answered correctly!
       setQuestionState('correct')
-      setMissedAnswers([])
-      setWronglySelectedAnswers([])
     } else {
       setQuestionState('wrong')
 
@@ -106,6 +111,7 @@ function App() {
   }
 
   const handleNextQuestion = () => {
+    clearAnswers()
     setQuestionCount((prev) => ++prev)
   }
 
